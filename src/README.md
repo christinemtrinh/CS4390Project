@@ -8,5 +8,6 @@ unqiue string from one or many different terminals.
 
 ### Common Issues
 - java/javac is not recognized: execute \
-	`$ export PATH=$PATH:/drives/c/"Program Files"/Java/jdk-20/bin:.` and 
-substitute appropriate local directory names 
+	`$ export PATH=$PATH:/drives/c/"Program Files"/Java/jdk-20/bin:.` and substitute appropriate local directory names 
+- Bind error: port is in use \
+	Choose a valid  port number and replace @ TCPClient.java (line 32) and TCPServer.java (line 14) then recompile
