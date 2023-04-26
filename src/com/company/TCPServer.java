@@ -10,7 +10,7 @@ class TCPServer {
         String capitalizedSentence;
 
         //welcome socket accepts and establishes incoming connection
-        ServerSocket welcomeSocket = new ServerSocket(6789);
+        ServerSocket welcomeSocket = new ServerSocket(61611);
 
         while(true) {
 
