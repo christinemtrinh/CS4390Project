@@ -13,7 +13,7 @@ class TCPServer {
         //welcome socket accepts and establishes incoming connection
         ServerSocket welcomeSocket = new ServerSocket(61618);
 	
-	//Clean up resources when killed
+	//Clean up resources when process killed
 	Runtime.getRuntime().addShutdownHook(new Thread() {
 	    public void run() {
 		try {

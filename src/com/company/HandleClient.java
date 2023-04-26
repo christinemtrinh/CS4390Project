@@ -37,15 +37,17 @@ public class HandleClient extends Thread {
             return;
         }
 
-        //Log client name, store current time, and send acknowledgement back
+	//Handle new connection: Save client name + current time
 	Date connectionStartTime  = new Date();	
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
 	String clientID = null;
 
 	try {
+	    //Have server read client identifier from buffer then save for future logging 
 	    String userID  = inFromClient.readLine();
 	    clientID = userID;
 
+	    //Log new connection details
 	    String startLog = formatter.format(connectionStartTime) + ": " + clientID + " has connected";
 	    System.out.println(startLog);
 
@@ -62,23 +64,27 @@ public class HandleClient extends Thread {
                 clientRequest = inFromClient.readLine();
 		Date reqRecTime = new Date();
 
-                //if client has disconnected or requests to disconnect, stop listening
+                //if client has disconnected or requests to disconnect, do end session protocols
                 if (clientRequest == null || clientRequest.equals("stop")) {
-                    //Todo: Take current time, subtract stored time to find time elapsed
                     //Todo: Log Time elapsed and client name here as well
+
+		    //Save time of quit and find elapsed time
 		    Date connectionEndTime = new Date();
 		    String endLog = formatter.format(connectionEndTime);
 		    long deltaTime = Math.abs(connectionEndTime.getTime() - connectionStartTime.getTime());
 		    long timeSec = TimeUnit.SECONDS.convert(deltaTime, TimeUnit.MILLISECONDS);
+
+		    //Log details of session end
                     System.out.println(endLog + ": " + clientID + " disconnected");
 		    System.out.println("\t  Session length (s): " + timeSec);
                     return;
                 }
 
-                //Todo: Turn this into a proper log of the request
+                //NOT end of session, log request
                 System.out.println(formatter.format(reqRecTime) + ": " + clientID + " made a request.");
 		System.out.println("\t  Req: " + clientRequest);
 
+		//Handle request
                 //Note that when replacing this with the real response, you must include a \n at the end or it wont work
                 //sends response back to client
                 outToClient.writeBytes("Request Received" + "\n");

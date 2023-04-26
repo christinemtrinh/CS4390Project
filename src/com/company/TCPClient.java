@@ -13,6 +13,10 @@ class TCPClient {
         //mathematical answer received from Math server
         String response;
 	
+        //used to read input from user
+        BufferedReader inFromUser =
+                new BufferedReader(new InputStreamReader(System.in));
+
 	//read user's self-identification
 	if (argv.length < 1) {
 		throw new Exception("\n\tExpected one parameter. Usage: make client <identifier>");
@@ -20,13 +24,8 @@ class TCPClient {
 
 	System.out.println("Logged in as: " + argv[0]);
 	System.out.println("Send a simple math calculation in prefix form, or 'stop' to exit");
-        //used to read input from user
-        BufferedReader inFromUser =
-                new BufferedReader(new InputStreamReader(System.in));
-
 
 	//check if server is running
-
 	try {
 	        //establish connection with server
         	Socket clientSocket = new Socket("127.0.0.1", 61618);
@@ -46,6 +45,7 @@ class TCPClient {
 		//read math expression from user
         	request = inFromUser.readLine();
 
+		//continue to get requests until user quits
 		while (!(request.equals("stop") || request == null)) {
 		    //send expression to the Math server
            	    outToServer.writeBytes(request + '\n');
@@ -67,5 +67,4 @@ class TCPClient {
 		ioe.printStackTrace();
 	}
     }
-
 }
