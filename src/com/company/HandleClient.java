@@ -2,6 +2,9 @@ package com.company;
 
 import java.io.*;
 import java.net.*;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+import java.text.SimpleDateFormat;
 
 /* HandleClient is a Thread that listens to a socket and responds to any requests that arrive*/
 public class HandleClient extends Thread {
@@ -34,7 +37,22 @@ public class HandleClient extends Thread {
             return;
         }
 
-        //Todo: should read from input stream here, log client name, store current time, and send acknowledgement back
+        //Log client name, store current time, and send acknowledgement back
+	Date connectionStartTime  = new Date();	
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+	String clientID = null;
+
+	try {
+	    String userID  = inFromClient.readLine();
+	    clientID = userID;
+
+	    String startLog = formatter.format(connectionStartTime) + ": " + clientID + " has connected";
+	    System.out.println(startLog);
+
+	} catch (IOException e) {
+	    System.out.println("Exception thrown while loggin a new connection: " + e);
+	}
+
 
         //fulfills requests from clients as they appear until prompted to stop
         while (true) {
@@ -42,17 +60,24 @@ public class HandleClient extends Thread {
 
                 //waits for and read next request from client
                 clientRequest = inFromClient.readLine();
+		Date reqRecTime = new Date();
 
                 //if client has disconnected or requests to disconnect, stop listening
                 if (clientRequest == null || clientRequest.equals("stop")) {
                     //Todo: Take current time, subtract stored time to find time elapsed
                     //Todo: Log Time elapsed and client name here as well
-                    System.out.println("Client disconnected.");
+		    Date connectionEndTime = new Date();
+		    String endLog = formatter.format(connectionEndTime);
+		    long deltaTime = Math.abs(connectionEndTime.getTime() - connectionStartTime.getTime());
+		    long timeSec = TimeUnit.SECONDS.convert(deltaTime, TimeUnit.MILLISECONDS);
+                    System.out.println(endLog + ": " + clientID + " disconnected");
+		    System.out.println("\t  Session length (s): " + timeSec);
                     return;
                 }
 
                 //Todo: Turn this into a proper log of the request
-                System.out.println(clientRequest);
+                System.out.println(formatter.format(reqRecTime) + ": " + clientID + " made a request.");
+		System.out.println("\t  Req: " + clientRequest);
 
                 //Note that when replacing this with the real response, you must include a \n at the end or it wont work
                 //sends response back to client
