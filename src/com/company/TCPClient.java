@@ -17,7 +17,7 @@ class TCPClient {
                 new BufferedReader(new InputStreamReader(System.in));
 
         //establish connection with server
-        Socket clientSocket = new Socket("127.0.0.1", 6789);
+        Socket clientSocket = new Socket("127.0.0.1", 61611);
 
         //used to send requests to server
         DataOutputStream outToServer =
