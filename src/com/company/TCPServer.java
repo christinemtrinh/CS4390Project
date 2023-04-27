@@ -8,7 +8,7 @@ class TCPServer {
 
     public static void main(String argv[]) throws Exception {
         //welcome socket accepts and establishes incoming connection
-        ServerSocket welcomeSocket = new ServerSocket(61618);
+        ServerSocket welcomeSocket = new ServerSocket(61620);
 	
 	//Clean up resources when process killed
 	Runtime.getRuntime().addShutdownHook(new Thread() {

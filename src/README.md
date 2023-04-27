@@ -3,8 +3,9 @@
 2. Run `$ make` 
 
 ### How to execute code:
-1. Run `$ java -cp . com.company.TCPServer` from /src.
-2. Run `$ java -cp . com.company.TCPClient <identifier>` where identifier is any unqiue string from one or many different terminals.
+1. Run `$ make server` from /src.
+2. Run `$ make client id=<identifier>` where identifier is any unqiue string 
+from one or many different terminals.
 
 ### How to interact from client:
 1. Run any prefix math operation in format of <operator><operand1> <operand2>

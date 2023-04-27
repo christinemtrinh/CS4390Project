@@ -27,7 +27,7 @@ class TCPClient {
 	//check if server is running
 	try {
 	        //establish connection with server
-        	Socket clientSocket = new Socket("127.0.0.1", 61618);
+        	Socket clientSocket = new Socket("127.0.0.1", 61620);
 
 	        //used to send requests to server
 	        DataOutputStream outToServer =
