@@ -8,7 +8,7 @@
 from one or many different terminals.
 
 ### How to interact from client:
-1. Run any prefix math operation in format of <operator><operand1> <operand2>
+1. Run any prefix math operation in format of `<operator><operand1> <operand2>`
 2. To exit, enter "stop"
 	
 ##### Constaints: 
