@@ -23,7 +23,6 @@ class TCPClient {
 	} 
 
 	System.out.println("Logged in as: " + argv[0]);
-	System.out.println("Send a simple math calculation in prefix form, or 'stop' to exit");
 
 	//check if server is running
 	try {
@@ -42,6 +41,12 @@ class TCPClient {
 		//send user ID to server
 		outToServer.writeBytes(argv[0] + '\n');
 
+		//Wait for acknowledgement of connection 
+		response = inFromServer.readLine();
+		System.out.println(response);
+		System.out.println("Send a simple math calculation in prefix form, or 'stop' to exit");
+
+
 		//read math expression from user
         	request = inFromUser.readLine();
 
@@ -54,7 +59,7 @@ class TCPClient {
          	    response = inFromServer.readLine();
 
 	            //print answer
-        	    System.out.println("FROM SERVER: " + response);
+        	    System.out.println(response);
 
 		    //ask for next question
 		    request = inFromUser.readLine();
