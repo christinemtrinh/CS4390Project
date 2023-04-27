@@ -7,9 +7,6 @@ import java.lang.*;
 class TCPServer {
 
     public static void main(String argv[]) throws Exception {
-        String clientSentence;
-        String capitalizedSentence;
-
         //welcome socket accepts and establishes incoming connection
         ServerSocket welcomeSocket = new ServerSocket(61618);
 	
