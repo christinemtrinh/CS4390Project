@@ -1,10 +1,10 @@
 ### How to compile code: 
-1. Run `$ make` from /src. 
+1. Navigate into /src `$ cd src`
+2. Run `$ make` 
 
 ### How to execute code:
 1. Run `$ java -cp . com.company.TCPServer` from /src.
-2. Run `$ java -cp . com.company.TCPClient <identifier>` where identifier is any 
-unqiue string from one or many different terminals.
+2. Run `$ java -cp . com.company.TCPClient <identifier>` where identifier is any unqiue string from one or many different terminals.
 
 ### Common Issues
 - java/javac is not recognized: execute \
