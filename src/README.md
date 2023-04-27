@@ -8,7 +8,8 @@
 
 ### How to interact from client:
 1. Run any prefix math operation in format of <operator><operand1> <operand2>
-2. To exit, enter "stop" \
+2. To exit, enter "stop"
+	
 ##### Constaints: 
 - Operands must be a non-negative integer
 - Operators are limited to +, -, /, *, %
