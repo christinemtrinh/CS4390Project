@@ -21,3 +21,4 @@ from one or many different terminals.
 	`$ export PATH=$PATH:/drives/c/"Program Files"/Java/jdk-20/bin:.` and substitute appropriate local directory names 
 - Bind error: port is in use \
 	Choose a valid  port number and replace @ TCPClient.java (line 32) and TCPServer.java (line 14) then recompile
+	This is an issue because of the project requirement to have the server run infinitely. Shutting down the server by killing the process does not run the JVM shutdown hooks needed to unbind the port.
